@@ -57,7 +57,10 @@ RUN \
   unzip /tmp/go-agent.zip -d / && \
   mv go-agent-18.7.0 /go-agent && \
   rm /tmp/go-agent.zip && \
-  mkdir -p /docker-entrypoint.d
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+  chmod 777 kubectl && \
+  mv kubectl /bin && \
+  mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
 COPY agent-bootstrapper-logback-include.xml /go-agent/config/agent-bootstrapper-logback-include.xml
