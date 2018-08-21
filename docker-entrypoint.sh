@@ -125,7 +125,9 @@ if [ "$1" = '/go-agent/agent.sh' ]; then
     try exec /usr/local/sbin/tini -- /usr/local/sbin/gosu go "$0" "$@"
   fi
 fi
-
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod 777 kubectl
+mv kubectl /bin
 # these 3 vars are used by `/go-agent/agent.sh`, so we export
 export AGENT_WORK_DIR
 export GO_AGENT_SYSTEM_PROPERTIES="${GO_AGENT_SYSTEM_PROPERTIES}${GO_AGENT_SYSTEM_PROPERTIES:+ }-Dgo.console.stdout=true"
