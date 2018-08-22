@@ -60,7 +60,7 @@ RUN \
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
   chmod 777 kubectl && \
   mv kubectl /bin && \
-  curl -LO https://github.com/pushthat/lightaws/releases/download/v0.0.4/lightaws_linux_amd64.tar.gz && \
+  curl -LO https://github.com/openfresh/lightaws/releases/download/v0.0.4/lightaws_linux_amd64.tar.gz && \
   tar -xf lightaws_linux_amd64.tar.gz && \
   rm lightaws_linux_amd64.tar.gz && \
   mv lightaws /bin && \
