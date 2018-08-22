@@ -61,9 +61,10 @@ RUN \
   chmod 777 kubectl && \
   mv kubectl /bin && \
   curl -LO https://github.com/openfresh/lightaws/releases/download/v0.0.3/lightaws_linux_amd64.tar.gz && \
-  tar -xf tar -xf lightaws_linux_amd64.tar.gz && \
+  tar -xf lightaws_linux_amd64.tar.gz && \
   rm lightaws_linux_amd64.tar.gz && \
   mv lightaws /bin && \
+  curl -sSL https://get.docker.com/ | sh && \
   mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
