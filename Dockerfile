@@ -66,6 +66,7 @@ RUN \
   mv lightaws /bin && \
   curl -sSL https://get.docker.com/ | sh && \
   usermod -aG docker go && \
+  apt install gettext -y && \
   mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
