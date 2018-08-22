@@ -60,6 +60,10 @@ RUN \
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
   chmod 777 kubectl && \
   mv kubectl /bin && \
+  curl -LO https://github.com/openfresh/lightaws/releases/download/v0.0.3/lightaws_linux_amd64.tar.gz && \
+  tar -xf tar -xf lightaws_linux_amd64.tar.gz && \
+  rm lightaws_linux_amd64.tar.gz && \
+  mv lightaws /bin && \
   mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
