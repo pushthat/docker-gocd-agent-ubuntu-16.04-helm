@@ -65,6 +65,7 @@ RUN \
   rm lightaws_linux_amd64.tar.gz && \
   mv lightaws /bin && \
   curl -sSL https://get.docker.com/ | sh && \
+  usermod -aG docker go && \
   mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
