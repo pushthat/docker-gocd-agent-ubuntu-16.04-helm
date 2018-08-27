@@ -60,7 +60,9 @@ RUN \
   chmod 777 kubectl && \
   mv kubectl /bin && \
   curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz && \
-  mv helm /bin
+  mv helm /bin && \
+  mkdir -p /docker-entrypoint.sh
+
 
 # ensure that logs are printed to console output
 COPY agent-bootstrapper-logback-include.xml /go-agent/config/agent-bootstrapper-logback-include.xml
