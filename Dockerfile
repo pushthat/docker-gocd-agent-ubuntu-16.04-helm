@@ -60,7 +60,9 @@ RUN \
   chmod 777 kubectl && \
   mv kubectl /bin && \
   curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz && \
-  mv helm /bin && \
+  tar -xf helm-v2.10.0-linux-amd64.tar.gz && \
+  mv linux-amd64/helm /bin && \
+  rm -rf helm-v2.10.0-linux-amd64 helm-v2.10.0-linux-amd64.tar.gz && \
   mkdir -p /docker-entrypoint.sh
 
 
