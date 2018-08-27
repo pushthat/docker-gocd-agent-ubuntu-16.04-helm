@@ -18,7 +18,6 @@
 ###############################################################################################
 
 FROM ubuntu:16.04
-MAINTAINER GoCD <go-cd-dev@googlegroups.com>
 
 LABEL gocd.version="18.7.0" \
   description="GoCD agent based on ubuntu version 16.04" \
