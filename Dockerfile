@@ -60,14 +60,8 @@ RUN \
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
   chmod 777 kubectl && \
   mv kubectl /bin && \
-  curl -LO https://github.com/openfresh/lightaws/releases/download/v0.0.4/lightaws_linux_amd64.tar.gz && \
-  tar -xf lightaws_linux_amd64.tar.gz && \
-  rm lightaws_linux_amd64.tar.gz && \
-  mv lightaws /bin && \
-  curl -sSL https://get.docker.com/ | sh && \
-  usermod -aG docker go && \
-  apt install gettext -y && \
-  mkdir -p /docker-entrypoint.sh
+  curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz && \
+  mv helm /bin
 
 # ensure that logs are printed to console output
 COPY agent-bootstrapper-logback-include.xml /go-agent/config/agent-bootstrapper-logback-include.xml
