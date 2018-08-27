@@ -63,6 +63,7 @@ RUN \
   tar -xf helm-v2.10.0-linux-amd64.tar.gz && \
   mv linux-amd64/helm /bin && \
   rm -rf helm-v2.10.0-linux-amd64 helm-v2.10.0-linux-amd64.tar.gz && \
+  helm plugin install https://github.com/chartmuseum/helm-push && \
   mkdir -p /docker-entrypoint.sh
 
 
