@@ -56,6 +56,7 @@ RUN \
   unzip /tmp/go-agent.zip -d / && \
   mv go-agent-18.7.0 /go-agent && \
   rm /tmp/go-agent.zip && \
+  apt install gettext -y && \
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
   chmod 777 kubectl && \
   mv kubectl /bin && \
@@ -63,9 +64,8 @@ RUN \
   tar -xf helm-v2.10.0-linux-amd64.tar.gz && \
   mv linux-amd64/helm /bin && \
   rm -rf helm-v2.10.0-linux-amd64 helm-v2.10.0-linux-amd64.tar.gz && \
-  helm plugin install https://github.com/chartmuseum/helm-push && \
+  helm init -c && \
   mkdir -p /docker-entrypoint.sh
-
 
 # ensure that logs are printed to console output
 COPY agent-bootstrapper-logback-include.xml /go-agent/config/agent-bootstrapper-logback-include.xml
