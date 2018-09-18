@@ -19,8 +19,6 @@
 
 FROM ruby:2.5.1-stretch
 
-COPY Gemfile .
-
 LABEL gocd.version="18.7.0" \
   description="GoCD agent based on ubuntu version 16.04" \
   maintainer="GoCD <go-cd-dev@googlegroups.com>" \
