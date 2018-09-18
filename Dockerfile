@@ -17,7 +17,9 @@
 # Please file any issues or PRs at https://github.com/gocd/docker-gocd-agent
 ###############################################################################################
 
-FROM ubuntu:16.04
+FROM ruby:2.5.1-stretch
+
+COPY Gemfile .
 
 LABEL gocd.version="18.7.0" \
   description="GoCD agent based on ubuntu version 16.04" \
@@ -36,13 +38,13 @@ ARG UID=1000
 ARG GID=1000
 
 RUN \
-# add mode and permissions for files we added above
+  # add mode and permissions for files we added above
   chmod 0755 /usr/local/sbin/tini && \
   chown root:root /usr/local/sbin/tini && \
   chmod 0755 /usr/local/sbin/gosu && \
   chown root:root /usr/local/sbin/gosu && \
-# add our user and group first to make sure their IDs get assigned consistently,
-# regardless of whatever dependencies get added
+  # add our user and group first to make sure their IDs get assigned consistently,
+  # regardless of whatever dependencies get added
   groupadd -g ${GID} go && \ 
   useradd -u ${UID} -g go -d /home/go -m go && \
   echo deb 'http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main' > /etc/apt/sources.list.d/openjdk-ppa.list && \
@@ -50,9 +52,9 @@ RUN \
   apt-get update && \
   apt-get install -y openjdk-8-jre-headless git subversion mercurial openssh-client bash unzip curl && \
   apt-get autoclean && \
-# download the zip file
+  # download the zip file
   curl --fail --location --silent --show-error "https://download.gocd.org/binaries/18.7.0-7121/generic/go-agent-18.7.0-7121.zip" > /tmp/go-agent.zip && \
-# unzip the zip file into /go-agent, after stripping the first path prefix
+  # unzip the zip file into /go-agent, after stripping the first path prefix
   unzip /tmp/go-agent.zip -d / && \
   mv go-agent-18.7.0 /go-agent && \
   rm /tmp/go-agent.zip && \
@@ -65,6 +67,7 @@ RUN \
   mv linux-amd64/helm /bin && \
   rm -rf helm-v2.10.0-linux-amd64 helm-v2.10.0-linux-amd64.tar.gz && \
   helm init -c && \
+  bundle install && \
   mkdir -p /docker-entrypoint.sh
 
 # ensure that logs are printed to console output
